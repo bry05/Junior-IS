@@ -40,13 +40,14 @@ training_set.head(3)
 training_set['Message'] = training_set['Message'].astype(str).str.split()
 
 vocabulary = []
+
 for message in training_set['Message']:
    for word in message:
-        vocabulary.append(word)
+         vocabulary.append(word)
 
-vocabulary = list(set(vocabulary))
+   vocabulary = list(set(vocabulary))
  
-len(vocabulary)
+   len(vocabulary)
 
 print (len(vocabulary)) #number of unique words
 
@@ -54,7 +55,7 @@ word_counts_per_message = {unique_word: [0] * len(training_set['Message']) for u
 
 for index, message in enumerate(training_set['Message']):
    for word in message:
-      word_counts_per_message[word][index] += 1
+         word_counts_per_message[word][index] += 1
 
 
 
@@ -77,6 +78,12 @@ training_set_clean = pd.concat([training_set, word_counts], axis=1)
 training_set_clean.head()  
 #print (training_set_clean)
 
+word_searches = ["code"]
+    
+for row in spam['Message']:
+        for word_search in word_searches:
+            if word_search in row:
+                print(row)
 
 
 spam_messages = training_set_clean[training_set_clean['Label'] == 'spam']
@@ -178,6 +185,9 @@ print('Accuracy:', correct/total)
 
 
 
+
+
+
 #Potientially Useful 
 
 #s = pd.Series(range(5))
@@ -217,3 +227,30 @@ print('Accuracy:', correct/total)
 #print (hiword_counts)
 
 #hiword_counts = hiword_counts.astype(int)
+
+#SPAM (in the present)
+#import random
+#www, no i,
+#few names/pronouns
+
+#names=["you", "your", "our"]
+#verbs=["call","txt","text","stop", "claim", "have", "reply", "get", "are", "send", "won"]
+#adjectives = ["free", "new"]
+#nouns=["mobile", "prize", "cash", "nokia"]
+
+#Ham (past, future)
+#import random
+#when, will, how, k, if
+#few specific nouns/things
+#many pronouns
+
+#names=["i","you","my","u","me","your","I'll",]
+#verbs=["are","is","have","call", "know"]
+#nouns=["it"]
+
+#while True:
+#    a=(random.choice(names))
+#    b=(random.choice(verbs))
+#    c=(random.choice(nouns))
+#   print(a+" ",b+" ",c)
+#   break
